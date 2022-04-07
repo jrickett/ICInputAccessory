@@ -33,7 +33,7 @@ open class KeyboardDismissTextField: UITextField {
   /// The custom input accessory view with a button to dismiss keyboard.
   @IBOutlet public var keyboardAccessoryView: KeyboardDismissAccessoryView! {
     didSet {
-      if UI_USER_INTERFACE_IDIOM() != .phone { return }
+      if UIDevice.current.userInterfaceIdiom != .phone { return }
       keyboardAccessoryView.dismissButton.addTarget(self, action: .dismiss, for: .touchUpInside)
       inputAccessoryView = keyboardAccessoryView
     }
@@ -56,7 +56,7 @@ open class KeyboardDismissTextField: UITextField {
   // MARK: - UIResponder
 
   open override func becomeFirstResponder() -> Bool {
-    if UI_USER_INTERFACE_IDIOM() == .phone {
+    if UIDevice.current.userInterfaceIdiom == .phone {
       keyboardAccessoryView.alpha = 1
     }
     return super.becomeFirstResponder()
